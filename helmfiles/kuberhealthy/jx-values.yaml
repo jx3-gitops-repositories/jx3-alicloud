@@ -29,15 +29,13 @@ jxRequirements:
     gitKind: github
     gitName: github
     gitServer: https://github.com
-    provider: iks
-    registry: icr.io
+    provider: alicloud
+    registry: ghcr.io
   environments:
   - key: dev
   - key: staging
   - key: production
   ingress:
-    annotations:
-      kubernetes.io/ingress.class: public-iks-k8s-nginx
     domain: change.me
     externalDNS: false
     kind: ingress
@@ -47,7 +45,7 @@ jxRequirements:
       enabled: false
       production: false
   repository: bucketrepo
-  secretStorage: local
+  secretStorage: alicloudSecretsManager
   vault: {}
   webhook: lighthouse
 jxRequirementsIngressExternalDNS:

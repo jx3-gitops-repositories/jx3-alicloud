@@ -3,7 +3,8 @@
 # This file is created from the jx-requirements.yml and jx-global-values.yaml files.
 # For more information see: https://jenkins-x.io/v3/develop/apps/#using-requirements-in-charts
 jx:
-  imagePullSecrets: []
+  imagePullSecrets:
+  - tekton-container-registry-auth
   pipelineVariables: {}
   releaseCRD: true
   secrets:
@@ -20,14 +21,16 @@ jxRequirements:
     enabled: false
     schedule: ""
   cluster:
+    chartRepository: http://bucketrepo.jx.svc.cluster.local/bucketrepo/charts
+    clusterName: kind
     devEnvApprovers:
     - todo
     environmentGitOwner: todo
     gitKind: github
     gitName: github
     gitServer: https://github.com
-    provider: gke
-    registry: gcr.io
+    provider: alicloud
+    registry: ghcr.io
   environments:
   - key: dev
   - key: staging
@@ -41,8 +44,8 @@ jxRequirements:
       email: ""
       enabled: false
       production: false
-  repository: nexus
-  secretStorage: gsm
+  repository: bucketrepo
+  secretStorage: alicloudSecretsManager
   vault: {}
   webhook: lighthouse
 jxRequirementsIngressExternalDNS:
